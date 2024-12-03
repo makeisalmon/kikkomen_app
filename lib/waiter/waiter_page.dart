@@ -15,10 +15,6 @@ class WaiterPage extends StatelessWidget {
       ),
       drawer: const NavBar(),
       body: TicketCard(),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: (){}, 
-        label: Text("New Order")
-      ),
     );
   }
 }

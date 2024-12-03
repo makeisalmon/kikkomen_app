@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:kikkomen_app/host_page.dart';
+import 'package:kikkomen_app/server_service.dart';
 import 'package:kikkomen_app/waiter/add_dish_page.dart';
 import 'package:kikkomen_app/waiter/waiter_page.dart';
 
 void main() {
+  ServerService.establishConnection();
   runApp(const MainApp());
 }
 
