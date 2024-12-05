@@ -1,9 +1,10 @@
 import 'package:mysql1/mysql1.dart';
 
 class ServerService {
-  static var serverConnection;
+  static late MySqlConnection serverConnection;
 
-  static void establishConnection() async {
+  static Future<void> establishConnection() async {
+//    await Future.delayed(Duration(seconds: 2));
     serverConnection = await MySqlConnection.connect(ConnectionSettings(
       host: 'localhost',
       port: 3306,
@@ -12,6 +13,10 @@ class ServerService {
       db: 'sushi'
     ));
     print("success!");
-    print(serverConnection);
   }
+
+  // static Iterable<Future<Map>> makeQuery() {
+  //   final queryResult = serverConnection.query('SELECT * FROM dish');
+  //   for row in result
+  // } 
 }
