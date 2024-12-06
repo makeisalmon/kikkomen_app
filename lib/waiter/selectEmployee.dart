@@ -77,10 +77,16 @@ class SelectServerDialog extends StatelessWidget {
   }
 
   Future<List<Map<String, dynamic>>> _fetchServers() async {
-    final query = await ServerService.serverConnection.query(
-      //TODO: make only select servers
-      'SELECT emp_id, first_name, last_name, status FROM employee'
+    
+    final Results query = await ServerService.serverConnection.query(
+      """
+      SELECT DISTINCT emp_id, first_name, last_name, cur_pos, status 
+      FROM employee 
+      NATURAL JOIN emp_shift 
+      WHERE cur_pos = 'Server';
+      """
     );
+
 
     List<Map<String, dynamic>> servers = [];
     for (var row in query) {

@@ -120,7 +120,10 @@ class _TicketCardState extends State<TicketCard> {
 
   void processPayment() async {
       int tableNum = widget.tableNum; // Assuming `widget.tableNum` is available
-  
+      if (WaiterPage.isPending = false) {
+        return;
+      }
+      WaiterPage.isPending = true;
       // First query: Mark the order as 'PENDING'
       await ServerService.serverConnection.query(
         "UPDATE cus_order SET status = 'PENDING' WHERE table_num = $tableNum AND status = 'OPEN';"
@@ -132,7 +135,7 @@ class _TicketCardState extends State<TicketCard> {
       });
   
       // Wait between 4 to 8 seconds
-      await Future.delayed(Duration(seconds: 4 + (Random().nextInt(5))));
+      await Future.delayed(Duration(milliseconds: 250 + (Random().nextInt(750))));
   
       // Second queries: Update the table and close the order
       await ServerService.serverConnection.query(
@@ -145,6 +148,7 @@ class _TicketCardState extends State<TicketCard> {
         UPDATE cus_order SET status = 'CLOSED' WHERE table_num = $tableNum AND status = 'PENDING';
         """
       );
+      WaiterPage.isPending = false;
   
       // Rebuild the TicketCard after the second query
       setState(() {

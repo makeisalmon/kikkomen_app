@@ -7,6 +7,7 @@ import 'package:mysql1/mysql1.dart';
 import 'package:kikkomen_app/waiter/ticket_card.dart';
 
 class WaiterPage extends StatefulWidget {
+  static bool isPending = false;
   final String empId;
   const WaiterPage({super.key, this.empId = "E001"});
   @override

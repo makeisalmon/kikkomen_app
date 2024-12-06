@@ -41,7 +41,7 @@ class MainApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           //home: const WaiterPage(),
-          initialRoute: '/WaiterPage',
+          initialRoute: '/HostPage',
           routes: {
             '/WaiterPage': (context) => const WaiterPage(),
             '/HostPage': (context) => const HostPage(),
